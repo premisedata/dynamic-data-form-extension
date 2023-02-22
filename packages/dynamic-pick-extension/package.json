@@ -1,5 +1,5 @@
 {
-  "name": "@backstage/plugin-dynamic-pick-extension",
+  "name": "@premisedata/plugin-dynamic-pick-extension",
   "version": "0.0.1",
   "main": "dist/index.esm.js",
   "types": "dist/index.d.ts",
