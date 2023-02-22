@@ -5,6 +5,7 @@
     "backstage": {
         "role": "web-library"
     },
+    "private": true,
     "engines": {
         "node": "18"
     },
