@@ -10,9 +10,11 @@ jobs:
       packages: write
     steps:
       - 
+        name: Checkout repository
         uses: actions/checkout@v3
       # Setup .npmrc file to publish to GitHub Packages
       - 
+        name: Setup .npmrc
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
@@ -20,12 +22,16 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@premisedata'
       - 
+        name: Install dependencies
         run: yarn install --frozen-lockfile
       - 
+        name: Build TypeScript
         run: yarn tsc
       - 
+        name: Build packages
         run: yarn run pack
       - 
+        name: Publish package to GitHub Packages
         run: |
           # Find all .tgz files under packages directory recursively
           TGZ_FILES=$(find packages -type f -name '*.tgz')
@@ -35,7 +41,7 @@ jobs:
           do
               echo "Running yarn publish on $TGZ_FILE"
               # Run yarn publish command on the .tgz file
-              yarn publish --access restricted $TGZ_FILE
+              yarn publish $TGZ_FILE
           done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
