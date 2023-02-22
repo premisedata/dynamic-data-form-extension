@@ -27,9 +27,15 @@ jobs:
         run: yarn run pack
       - 
         run: |
-          for file in packages/*.tgz; do
-            echo "Publishing $file"
-            yarn publish --access restricted $file
+          # Find all .tgz files under packages directory recursively
+          TGZ_FILES=$(find packages -type f -name '*.tgz')
+
+          # Loop through each .tgz file found
+          for TGZ_FILE in $TGZ_FILES
+          do
+              echo "Running yarn publish on $TGZ_FILE"
+              # Run yarn publish command on the .tgz file
+              yarn publish --access restricted $TGZ_FILE
           done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
