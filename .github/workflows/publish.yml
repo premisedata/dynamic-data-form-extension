@@ -24,7 +24,7 @@ jobs:
           bump_each_commit: true
           # change_path: "packages/"
       - 
-        run: echo "Debug output: ${{fromJSON(steps.semantic.outputs)}})"
+        run: echo "Debug output: ${{ fromJSON(steps.semantic.outputs) }}"
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
