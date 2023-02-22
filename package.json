@@ -2,6 +2,21 @@
     "name": "@premisedata/dynamic-data-form-extension",
     "version": "0.0.1",
     "description": "Dynamic Data Form Extension (Frontend and Backend Plugins)",
+    "keywords": [
+        "backstage",
+        "plugin",
+        "premisedata"
+    ],
+    "author": "Premise",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/premisedata/dynamic-data-form-extension.git"
+    },
+    "bugs": {
+        "url": "https://github.com/premisedata/dynamic-data-form-extension/issues"
+    },
+    "homepage": "https://premise.com",
     "backstage": {
         "role": "web-library"
     },
@@ -10,9 +25,6 @@
         "node": "18"
     },
     "scripts": {
-        "build:frontend": "yarn workspace @premisedata/plugin-dynamic-pick-extension build",
-        "build:backend": "yarn workspace @premisedata/plugin-form-data-backend build",
-        "build:all": "yarn build:backend && yarn build:frontend",
         "tsc": "tsc",
         "tsc:full": "tsc --skipLibCheck false --incremental false",
         "clean": "backstage-cli repo clean",
@@ -21,10 +33,7 @@
         "lint": "backstage-cli repo lint --since origin/master",
         "lint:all": "backstage-cli repo lint",
         "prettier:check": "prettier --check .",
-        "new": "backstage-cli new",
-        "pack:frontend": "yarn build:frontend && mkdir -p dist && yarn workspace @premisedata/plugin-dynamic-pick-extension pack",
-        "pack:backend": "yarn build:backend && mkdir -p dist && yarn workspace @premisedata/plugin-form-data-backend pack",
-        "pack": "yarn pack:frontend && yarn pack:backend"
+        "new": "backstage-cli new"
     },
     "workspaces": {
         "packages": [

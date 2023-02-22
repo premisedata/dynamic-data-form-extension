@@ -41,5 +41,20 @@
     "dist",
     "package.json",
     "README.md"
-  ]
+  ],
+  "description": "Dynamic Data Form Extension (Frontend and Backend Plugins)",
+  "keywords": [
+    "backstage",
+    "plugin",
+    "premisedata"
+  ],
+  "author": "Premise",
+  "homepage": "https://premise.com",
+  "bugs": {
+    "url": "https://github.com/premisedata/dynamic-data-form-extension/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/premisedata/dynamic-data-form-extension.git"
+  }
 }
