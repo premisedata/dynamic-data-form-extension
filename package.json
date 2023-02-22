@@ -1,70 +1,70 @@
 {
-    "name": "@premisedata/dynamic-data-form-extension",
-    "version": "0.0.0",
-    "description": "Dynamic Data Form Extension (Frontend and Backend Plugins)",
-    "keywords": [
-        "backstage",
-        "plugin",
-        "premisedata"
+  "name": "@premisedata/dynamic-data-form-extension",
+  "version": "0.0.1",
+  "description": "Dynamic Data Form Extension (Frontend and Backend Plugins)",
+  "keywords": [
+    "backstage",
+    "plugin",
+    "premisedata"
+  ],
+  "author": "Premise",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/premisedata/dynamic-data-form-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/premisedata/dynamic-data-form-extension/issues"
+  },
+  "homepage": "https://premise.com",
+  "backstage": {
+    "role": "web-library"
+  },
+  "private": true,
+  "engines": {
+    "node": "18"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:full": "tsc --skipLibCheck false --incremental false",
+    "clean": "backstage-cli repo clean",
+    "test": "backstage-cli repo test",
+    "test:all": "backstage-cli repo test --coverage",
+    "lint": "backstage-cli repo lint --since origin/master",
+    "lint:all": "backstage-cli repo lint",
+    "prettier:check": "prettier --check .",
+    "new": "backstage-cli new"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "@backstage/cli": "^0.22.2",
+    "@spotify/prettier-config": "^12.0.0",
+    "concurrently": "^6.0.0",
+    "lerna": "^4.0.0",
+    "node-gyp": "^9.0.0",
+    "prettier": "^2.3.2",
+    "typescript": "~4.6.4"
+  },
+  "prettier": "@spotify/prettier-config",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ],
-    "author": "Premise",
-    "license": "Apache-2.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/premisedata/dynamic-data-form-extension.git"
-    },
-    "bugs": {
-        "url": "https://github.com/premisedata/dynamic-data-form-extension/issues"
-    },
-    "homepage": "https://premise.com",
-    "backstage": {
-        "role": "web-library"
-    },
-    "private": true,
-    "engines": {
-        "node": "18"
-    },
-    "scripts": {
-        "tsc": "tsc",
-        "tsc:full": "tsc --skipLibCheck false --incremental false",
-        "clean": "backstage-cli repo clean",
-        "test": "backstage-cli repo test",
-        "test:all": "backstage-cli repo test --coverage",
-        "lint": "backstage-cli repo lint --since origin/master",
-        "lint:all": "backstage-cli repo lint",
-        "prettier:check": "prettier --check .",
-        "new": "backstage-cli new"
-    },
-    "workspaces": {
-        "packages": [
-            "packages/*"
-        ]
-    },
-    "devDependencies": {
-        "@backstage/cli": "^0.22.2",
-        "@spotify/prettier-config": "^12.0.0",
-        "concurrently": "^6.0.0",
-        "lerna": "^4.0.0",
-        "node-gyp": "^9.0.0",
-        "prettier": "^2.3.2",
-        "typescript": "~4.6.4"
-    },
-    "prettier": "@spotify/prettier-config",
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
-          "eslint --fix",
-          "prettier --write"
-        ],
-        "*.{json,md}": [
-          "prettier --write"
-        ]
-      },
-      "jest": {
-        "transformModules": [
-          "@asyncapi/react-component"
-        ]
-      },
-      "resolutions": {
-        "**/rollup": "2.75.6"
-      }
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "transformModules": [
+      "@asyncapi/react-component"
+    ]
+  },
+  "resolutions": {
+    "**/rollup": "2.75.6"
+  }
 }
