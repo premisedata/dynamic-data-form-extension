@@ -13,6 +13,16 @@ jobs:
       - 
         name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: paulhatch/semantic-version@v5.0.2
+        id: semantic
+        with:
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          version_format: "${major}.${minor}.${patch}"
+          bump_each_commit: true
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
@@ -33,6 +43,6 @@ jobs:
         run: npx oao run-script build --parallel
       - 
         name: Publish package to GitHub Packages
-        run: npx oao publish --no-confirm
+        run: npx oao publish --no-confirm --increment-version-by ${steps.semantic.outputs.version_type}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
