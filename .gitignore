@@ -39,3 +39,4 @@ site
 .idea
 
 *.tgz
+.DS_Store
