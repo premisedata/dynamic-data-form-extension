@@ -24,7 +24,7 @@ jobs:
           scope: '@premisedata'
       - 
         name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npx oao bootstrap --production
       - 
         name: Build TypeScript
         run: yarn tsc
@@ -33,6 +33,6 @@ jobs:
         run: npx oao run-script build --parallel
       - 
         name: Publish package to GitHub Packages
-        run: npx oao publish --yes
+        run: npx oao publish --no-confirm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
