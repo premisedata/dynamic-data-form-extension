@@ -40,14 +40,9 @@ jobs:
       - 
         name: Build packages
         run: npx oao run-script build --parallel
-      -
-        name: Set git user
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - 
         if: steps.semantic.outputs.changed == 'true'
         name: Publish package to GitHub Packages
-        run: npx oao publish --no-confirm --increment-version-by ${{ steps.semantic.outputs.version_type }}
+        run: npx oao publish --no-git-commit --no-confirm --increment-version-by ${{ steps.semantic.outputs.version_type }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
