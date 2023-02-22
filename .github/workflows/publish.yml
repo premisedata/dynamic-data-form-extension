@@ -43,6 +43,6 @@ jobs:
       - 
         if: steps.semantic.outputs.changed == 'true'
         name: Publish package to GitHub Packages
-        run: npx oao publish --no-confirm --increment-version-by ${{ steps.semantic.outputs.version_type }}
+        run: npx oao publish --no-git-commit --no-confirm --increment-version-by ${{ steps.semantic.outputs.version_type }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
