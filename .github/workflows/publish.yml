@@ -46,3 +46,11 @@ jobs:
         run: npx oao publish --no-git-commit --no-confirm --increment-version-by ${{ steps.semantic.outputs.version_type }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - 
+        if: steps.semantic.outputs.changed == 'true'
+        uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: true
+          makeLatest: true
+          commit: main
+          tag: ${{ steps.semantic.outputs.version }}
