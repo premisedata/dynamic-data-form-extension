@@ -25,7 +25,7 @@ jobs:
           # change_path: "packages/"
       - 
         run: |
-          echo "Debug output: ${{ toJSON(steps.semantic.outputs) }}"
+          echo 'Debug output: ${{ toJSON(steps.semantic.outputs) }}'
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
