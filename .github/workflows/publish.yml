@@ -23,6 +23,7 @@ jobs:
           minor_pattern: "(MINOR)"
           version_format: "${major}.${minor}.${patch}"
           bump_each_commit: true
+          change_path: "packages/"
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
@@ -42,7 +43,8 @@ jobs:
         name: Build packages
         run: npx oao run-script build --parallel
       - 
+        if: steps.semantic.outputs.changed == true
         name: Publish package to GitHub Packages
-        run: npx oao publish --no-confirm --increment-version-by ${steps.semantic.outputs.version_type}
+        run: npx oao publish --no-confirm --increment-version-by ${{ steps.semantic.outputs.version_type }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
