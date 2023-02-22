@@ -21,11 +21,7 @@ jobs:
           tag_prefix: "v"
           major_pattern: "(MAJOR)"
           minor_pattern: "(MINOR)"
-          bump_each_commit: true
-          # change_path: "packages/"
-      - 
-        run: |
-          echo 'Debug output: ${{ toJSON(steps.semantic.outputs) }}'
+          change_path: "packages/"
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
@@ -45,7 +41,7 @@ jobs:
         name: Build packages
         run: npx oao run-script build --parallel
       - 
-        # if: steps.semantic.outputs.changed == true
+        if: steps.semantic.outputs.changed == 'true'
         name: Publish package to GitHub Packages
         run: npx oao publish --no-confirm --increment-version-by ${{ steps.semantic.outputs.version_type }}
         env:
