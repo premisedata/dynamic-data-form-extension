@@ -10,8 +10,8 @@
         "node": "18"
     },
     "scripts": {
-        "build:frontend": "yarn workspace @backstage/plugin-dynamic-pick-extension build",
-        "build:backend": "yarn workspace @backstage/plugin-form-data-backend build",
+        "build:frontend": "yarn workspace @premisedata/plugin-dynamic-pick-extension build",
+        "build:backend": "yarn workspace @premisedata/plugin-form-data-backend build",
         "build:all": "yarn build:backend && yarn build:frontend",
         "tsc": "tsc",
         "tsc:full": "tsc --skipLibCheck false --incremental false",
@@ -22,8 +22,8 @@
         "lint:all": "backstage-cli repo lint",
         "prettier:check": "prettier --check .",
         "new": "backstage-cli new",
-        "pack:frontend": "yarn build:frontend && mkdir -p dist && yarn workspace @backstage/plugin-dynamic-pick-extension pack",
-        "pack:backend": "yarn build:backend && mkdir -p dist && yarn workspace @backstage/plugin-form-data-backend pack",
+        "pack:frontend": "yarn build:frontend && mkdir -p dist && yarn workspace @premisedata/plugin-dynamic-pick-extension pack",
+        "pack:backend": "yarn build:backend && mkdir -p dist && yarn workspace @premisedata/plugin-form-data-backend pack",
         "pack": "yarn pack:frontend && yarn pack:backend"
     },
     "workspaces": {
