@@ -1,0 +1,61 @@
+{
+    "name": "@backstage/dynamic-data-form-extension",
+    "version": "0.0.1",
+    "description": "Dynamic Data Form Extension (Frontend and Backend Plugins)",
+    "backstage": {
+        "role": "web-library"
+    },
+    "private": true,
+    "engines": {
+        "node": "18"
+    },
+    "scripts": {
+        "build:frontend": "yarn workspace @backstage/plugin-dynamic-pick-extension build",
+        "build:backend": "yarn workspace @backstage/plugin-form-data-backend build",
+        "build:all": "yarn build:backend && yarn build:frontend",
+        "tsc": "tsc",
+        "tsc:full": "tsc --skipLibCheck false --incremental false",
+        "clean": "backstage-cli repo clean",
+        "test": "backstage-cli repo test",
+        "test:all": "backstage-cli repo test --coverage",
+        "lint": "backstage-cli repo lint --since origin/master",
+        "lint:all": "backstage-cli repo lint",
+        "prettier:check": "prettier --check .",
+        "new": "backstage-cli new",
+        "pack:frontend": "yarn build:frontend && mkdir -p dist && yarn workspace @backstage/plugin-dynamic-pick-extension pack",
+        "pack:backend": "yarn build:backend && mkdir -p dist && yarn workspace @backstage/plugin-form-data-backend pack",
+        "pack": "yarn pack:frontend && yarn pack:backend"
+    },
+    "workspaces": {
+        "packages": [
+            "packages/*"
+        ]
+    },
+    "devDependencies": {
+        "@backstage/cli": "^0.22.2",
+        "@spotify/prettier-config": "^12.0.0",
+        "concurrently": "^6.0.0",
+        "lerna": "^4.0.0",
+        "node-gyp": "^9.0.0",
+        "prettier": "^2.3.2",
+        "typescript": "~4.6.4"
+    },
+    "prettier": "@spotify/prettier-config",
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+          "eslint --fix",
+          "prettier --write"
+        ],
+        "*.{json,md}": [
+          "prettier --write"
+        ]
+      },
+      "jest": {
+        "transformModules": [
+          "@asyncapi/react-component"
+        ]
+      },
+      "resolutions": {
+        "**/rollup": "2.75.6"
+      }
+}
