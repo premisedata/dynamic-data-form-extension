@@ -8,7 +8,7 @@ Welcome to the form-data backend plugin! This plugin is a [Backstage Backend Plu
 ## Configuration
 Create a `form-data.ts` file under `packages/backend/src/plugins` with the following content:
 ```ts
-import { createRouter } from '@backstage/plugin-form-data-backend';
+import { createRouter } from '@premise/plugin-form-data-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 import { exampleRouter } from '../providers';
@@ -36,7 +36,7 @@ Create a `providers` folder under `packages/backend/src` containing all of your 
 ```ts
 import express from 'express';
 import Router from 'express-promise-router';
-import { RouterOptions } from '@premisedata/plugin-form-data-backend';
+import { RouterOptions } from '@premise/plugin-form-data-backend';
 
 export async function exampleRouter(
   options: RouterOptions,

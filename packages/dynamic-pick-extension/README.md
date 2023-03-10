@@ -9,7 +9,7 @@ Welcome to the dynamic-pick-extension plugin! This plugin is a [Custom Field Ext
 Add the import to your `App.tsx` on the frontend package of your backstage instance:
 
 ```js
-import { DynamicPickFieldExtension } from '@backstage/plugin-dynamic-pick-extension';
+import { DynamicPickFieldExtension } from '@premise/plugin-dynamic-pick-extension';
 ```
 
 Then add the imported field extension as a child of `ScaffolderFieldExtensions`
