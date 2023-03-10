@@ -1,6 +1,6 @@
 {
   "name": "@premise/dynamic-data-form-extension",
-  "version": "v0.0.1",
+  "version": "0.0.0",
   "description": "Dynamic Data Form Extension (Frontend and Backend Plugins)",
   "keywords": [
     "backstage",
