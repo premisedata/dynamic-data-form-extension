@@ -1,4 +1,4 @@
-name: Publish package to GitHub Packages
+name: Publish package to NPM
 on:
   push:
     branches:
@@ -22,15 +22,17 @@ jobs:
           major_pattern: "(MAJOR)"
           minor_pattern: "(MINOR)"
           change_path: "packages/"
+          search_commit_body: true
+          bump_each_commit: true
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
-          scope: '@premisedata'
+          scope: '@premise'
       - 
         name: Install dependencies
         run: npx oao bootstrap --production
@@ -42,7 +44,7 @@ jobs:
         run: npx oao run-script build --parallel
       - 
         if: steps.semantic.outputs.changed == 'true'
-        name: Publish package to GitHub Packages
+        name: Publish package to NPM
         run: npx oao publish --no-git-commit --no-confirm --increment-version-by ${{ steps.semantic.outputs.version_type }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
