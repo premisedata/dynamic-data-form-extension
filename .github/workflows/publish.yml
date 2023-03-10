@@ -23,7 +23,6 @@ jobs:
           minor_pattern: "(MINOR)"
           change_path: "packages/"
           search_commit_body: true
-          bump_each_commit: true
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
