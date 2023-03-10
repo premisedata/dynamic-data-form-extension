@@ -1,13 +1,49 @@
 # dynamic-pick-extension
 
-Welcome to the dynamic-pick-extension plugin!
+Welcome to the dynamic-pick-extension plugin! This plugin is a [Custom Field Extension](https://backstage.io/docs/features/software-templates/writing-custom-field-extensions) that allow you to create `<Select>` components that fetches data dynamically from an endpoint. This can be used together with the `form-data-backend` plugin to write custom logic to fill the field.
 
-_This plugin was created through the Backstage CLI_
+## Installation
+<!-- TODO -->
 
-## Getting started
+## Configuration
+Add the import to your `App.tsx` on the frontend package of your backstage instance:
 
-Your plugin has been added to the example app in this repository, meaning you'll be able to access it by running `yarn start` in the root directory, and then navigating to [/dynamic-pick-extension](http://localhost:3000/dynamic-pick-extension).
+```js
+import { DynamicPickFieldExtension } from '@backstage/plugin-dynamic-pick-extension';
+```
 
-You can also serve the plugin in isolation by running `yarn start` in the plugin directory.
-This method of serving the plugin provides quicker iteration speed and a faster startup and hot reloads.
-It is only meant for local development, and the setup for it can be found inside the [/dev](./dev) directory.
+Then add the imported field extension as a child of `ScaffolderFieldExtensions`
+
+```js
+<ScaffolderFieldExtensions>
+  <DynamicPickFieldExtension />
+</ScaffolderFieldExtensions>
+```
+
+## Usage
+To use the extension on a [Backstage Template Action](https://backstage.io/docs/features/software-templates/writing-templates) just add the `ui-field` and `ui-options` fields to the parameter
+
+### Basic usage:
+```yaml
+parameters:
+    - category:
+        title: Category
+        type: string
+        ui:field: DynamicPickExtension
+        ui:options:
+            # IMPORTANT: The endpoint needs to return a JSON array of strings.
+            external_data: https://dummyjson.com/products/categories
+```
+
+### Using the `form-data-backend` plugin:
+
+```yaml
+parameters:
+    - team:
+        title: Github Team to add as admin of the repository
+        type: string
+        ui:field: DynamicPickExtension
+        ui:options:
+            # This is a provider added on the form-data-backend plugin
+            form_data: github/teams
+```

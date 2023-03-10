@@ -11,7 +11,7 @@ export async function exampleRouter(
 
   router.get('/ping', async (_, response) => {
     logger.info('Pong');
-    response.send('pong');
+    response.json(['pong']);
   });
   
   return router;

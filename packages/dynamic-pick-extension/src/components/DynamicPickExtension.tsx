@@ -14,6 +14,9 @@ const DynamicPickExtensionWithOptionsFieldSchema = makeFieldSchemaFromZod(
     form_data: z
       .string()
       .describe('Endpoint from form-data plugin to fill the select'),
+    external_data: z
+      .string()
+      .describe('External endpoint to fill the select. Needs to return a JSON array of strings.'),
   }),
 );
 
@@ -33,9 +36,15 @@ export const DynamicPickExtension = ({
   const config = useApi(configApiRef);
   const backendUrl = config.getString('backend.baseUrl');
   let formDataOptions: any = []
-  formDataOptions = useAsync(async () => {
-    return (await fetch(`${backendUrl}/api/form-data/${options?.form_data}`)).json();
-  })
+  if (options?.external_data) {
+    formDataOptions = useAsync(async () => {
+      return (await fetch(options?.external_data)).json();
+    })
+  } else if (options?.form_data) {
+    formDataOptions = useAsync(async () => {
+      return (await fetch(`${backendUrl}/api/form-data/${options?.form_data}`)).json();
+    })
+  }
   
   return (
     <FormControl
