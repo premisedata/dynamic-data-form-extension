@@ -8,7 +8,7 @@ jobs:
     name: Find services
     runs-on: ubuntu-latest
     outputs:
-      matrix: "{\"folders\": ${{ steps.generate_matrix.outputs.folders }} }"
+      folders: ${{ steps.generate_matrix.outputs.folders }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -30,7 +30,7 @@ jobs:
     needs: [ generate_matrix ]
     strategy:
       matrix:
-        folder: ${{ fromJson(needs.generate_matrix.outputs.folders )}}
+        folder: ${{ fromJson(needs.generate_matrix.outputs.folders) }}
       fail-fast: true 
     defaults:
       run:
