@@ -31,10 +31,9 @@ jobs:
     strategy:
       matrix:
         folder: ${{ fromJson(needs.generate_matrix.outputs.folders) }}
-      fail-fast: true 
     defaults:
       run:
-        working-directory: ${{ matrix.folder }}
+        working-directory: ./packages/${{ matrix.folder }}
     steps:
       - 
         name: Checkout repository
