@@ -14,9 +14,12 @@ jobs:
         uses: actions/checkout@v3
       - name: Generate matrix
         id: generate_matrix
-        uses: philips-labs/list-folder-action@v1
-        with:
-          path: ./packages
+        shell: bash
+        run: |
+          cd ./packages
+          folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
+          echo $folders
+          echo "::set-output name=folders::$folders"
 
   
   publish:
