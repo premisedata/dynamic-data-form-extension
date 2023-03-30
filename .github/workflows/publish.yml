@@ -8,16 +8,15 @@ jobs:
     name: Find services
     runs-on: ubuntu-latest
     outputs:
-      matrix: "{\"path\": ${{ steps.generate_matrix.outputs.matrix }} }"
+      matrix: "{\"folders\": ${{ steps.generate_matrix.outputs.folders }} }"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Generate matrix
         id: generate_matrix
-        uses: ReyahSolutions/matrix-git-generator@v1
+        uses: philips-labs/list-folders-action@v1
         with:
-          filters: |
-            packages/**
+          path: ./packages
 
   
   publish:
@@ -27,17 +26,16 @@ jobs:
       packages: write
     needs: [ generate_matrix ]
     strategy:
-      matrix: ${{fromJson(needs.generate_matrix.outputs.matrix)}}
+      matrix:
+        folder: ${{ fromJson(needs.generate_matrix.outputs.folders )}}
       fail-fast: true 
     defaults:
       run:
-        working-directory: ${{ matrix.path }}
+        working-directory: ${{ matrix.folder }}
     steps:
       - 
         name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
