@@ -8,9 +8,6 @@ import { useApi, configApiRef } from '@backstage/core-plugin-api'
 const DynamicPickExtensionWithOptionsFieldSchema = makeFieldSchemaFromZod(
   z.string(),
   z.object({
-    title: z
-      .string()
-      .describe('Title of the field'),
     form_data: z
       .string()
       .describe('Endpoint from form-data plugin to fill the select'),
@@ -30,7 +27,7 @@ export const DynamicPickExtension = ({
   required,
   formData,
   idSchema,
-  schema: { title },
+  schema: { title, description },
   uiSchema: { 'ui:options': options },
 }: DynamicPickExtensionWithOptionsProps) => {
   const config = useApi(configApiRef);
@@ -68,5 +65,6 @@ export const DynamicPickExtension = ({
         })()}
         {formDataOptions.loading && <LinearProgress />}
       </Select>
+      <FormHelperText>{description}</FormHelperText>
     </FormControl >)
 };
