@@ -4,27 +4,40 @@ on:
     branches:
       - main
 jobs:
+  generate_matrix:
+    name: Find services
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: "{\"path\": ${{ steps.generate_matrix.outputs.matrix }} }"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate matrix
+        id: generate_matrix
+        uses: ReyahSolutions/matrix-git-generator@v1
+        with:
+          filters: |
+            packages/**
+
+  
   publish:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
+    needs: [ generate_matrix ]
+    strategy:
+      matrix: ${{fromJson(needs.generate_matrix.outputs.matrix)}}
+      fail-fast: true 
+    defaults:
+      run:
+        working-directory: ${{ matrix.path }}
     steps:
       - 
         name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - 
-        uses: fregante/setup-git-user@v2
-      - 
-        uses: paulhatch/semantic-version@v5.0.2
-        id: semantic
-        with:
-          major_pattern: "(MAJOR)"
-          minor_pattern: "(MINOR)"
-          change_path: "packages/"
-          search_commit_body: true
       # Setup .npmrc file to publish to GitHub Packages
       - 
         name: Setup .npmrc
@@ -36,24 +49,15 @@ jobs:
           scope: '@premise'
       - 
         name: Install dependencies
-        run: npx oao bootstrap --production
+        run: yarn install --frozen-lockfile
       - 
         name: Build TypeScript
         run: yarn tsc
       - 
         name: Build packages
-        run: npx oao run-script build --parallel
+        run: yarn build
       - 
-        if: steps.semantic.outputs.changed == 'true'
         name: Publish package to NPM
-        run: npx oao run-script publish --parallel
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - 
-        if: steps.semantic.outputs.changed == 'true'
-        uses: ncipollo/release-action@v1
-        with:
-          generateReleaseNotes: true
-          makeLatest: true
-          commit: main
-          tag: ${{ steps.semantic.outputs.version }}
