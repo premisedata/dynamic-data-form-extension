@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputLabel, FormControl, Select, MenuItem, LinearProgress } from '@material-ui/core';
+import { InputLabel, FormControl, Select, MenuItem, LinearProgress, FormHelperText } from '@material-ui/core';
 import { z } from 'zod';
 import { makeFieldSchemaFromZod } from '@backstage/plugin-scaffolder';
 import { useAsync } from 'react-use';
@@ -65,6 +65,6 @@ export const DynamicPickExtension = ({
         })()}
         {formDataOptions.loading && <LinearProgress />}
       </Select>
-      <FormHelperText>{description}</FormHelperText>
+      {description && <FormHelperText>{description}</FormHelperText>}
     </FormControl >)
 };
