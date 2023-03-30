@@ -8,17 +8,19 @@ jobs:
     name: Find services
     runs-on: ubuntu-latest
     outputs:
-      folders: ${{ steps.changed-files-specific.outputs.all_modified_files }}
+      folders: ${{ steps.generate_matrix.outputs.folders }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Get changed files in the docs folder
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v35
-        with:
-          files: packages/*
-          dir_names: "true"
-          dir_names_max_depth: "1"
+      - name: Generate matrix
+        id: generate_matrix
+        shell: bash
+        run: |
+          cd ./packages
+          folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
+          echo $folders
+          echo "::set-output name=folders::$folders"
+
   
   publish:
     runs-on: ubuntu-latest
@@ -57,5 +59,6 @@ jobs:
       - 
         name: Publish package to NPM
         run: yarn publish
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
