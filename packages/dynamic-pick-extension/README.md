@@ -10,19 +10,24 @@ yarn add @premise/plugin-dynamic-pick-extension
 ```
 
 ## Configuration
-Add the import to your `App.tsx` on the frontend package of your backstage instance:
+Add the import to your `packages/app/src/App.tsx` on the frontend package of your backstage instance:
 
 ```js
 import { DynamicPickFieldExtension } from '@premise/plugin-dynamic-pick-extension';
+import { ScaffolderFieldExtensions } from '@backstage/plugin-scaffolder';
 ```
 
-Then add the imported field extension as a child of `ScaffolderFieldExtensions`
+Then add the imported field extension as a child of `ScaffolderFieldExtensions` inside `Route`
 
 ```js
-<ScaffolderFieldExtensions>
-  <DynamicPickFieldExtension />
-</ScaffolderFieldExtensions>
+<Route path="/create" element={<ScaffolderPage />}>
+  <ScaffolderFieldExtensions>
+    <DynamicPickFieldExtension />
+  </ScaffolderFieldExtensions>
+</Route>
 ```
+
+You should not see the custom filed `DynamicPickExtension` clicking "Custom field explored" here `http://localhost:3000/create/edit`.
 
 ## Usage
 To use the extension on a [Backstage Template Action](https://backstage.io/docs/features/software-templates/writing-templates) just add the `ui-field` and `ui-options` fields to the parameter
