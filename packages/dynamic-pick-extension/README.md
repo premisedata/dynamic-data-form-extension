@@ -3,7 +3,11 @@
 Welcome to the dynamic-pick-extension plugin! This plugin is a [Custom Field Extension](https://backstage.io/docs/features/software-templates/writing-custom-field-extensions) that allow you to create `<Select>` components that fetches data dynamically from an endpoint. This can be used together with the `form-data-backend` plugin to write custom logic to fill the field.
 
 ## Installation
-<!-- TODO -->
+
+```
+cd packages/app/
+yarn add @premise/plugin-dynamic-pick-extension
+```
 
 ## Configuration
 Add the import to your `App.tsx` on the frontend package of your backstage instance:
