@@ -1,7 +1,8 @@
 name: Publish package to NPM
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - main
 jobs:
   generate_matrix:
     name: Find services
@@ -58,5 +59,6 @@ jobs:
       - 
         name: Publish package to NPM
         run: yarn publish
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
