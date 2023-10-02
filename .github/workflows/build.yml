@@ -22,7 +22,7 @@ jobs:
           echo "::set-output name=folders::$folders"
 
   
-  publish:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
