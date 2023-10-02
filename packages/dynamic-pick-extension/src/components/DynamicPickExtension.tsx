@@ -51,7 +51,7 @@ export const DynamicPickExtension = ({
       id={idSchema?.$id}
       loading={loading}
       value={formData ?? null}
-      renderInput={(params) => (
+      renderInput={(params) =>
         <TextField
           {...params}
           label={title}
@@ -60,7 +60,7 @@ export const DynamicPickExtension = ({
           error={rawErrors?.length > 0 && !formData}
           helperText={description}
         />
-      )}
+      }
       options={formDataOptions}
       onChange={(_, value) => onChange(value)}
       getOptionSelected={(option, value) => option === value}
