@@ -5,8 +5,8 @@ Welcome to the form-data backend plugin! This plugin is a [Backstage Backend Plu
 ## Installation
 
 ```
-cd packages/app/
-yarn add @premise/dynamic-data-form-extension
+cd packages/backend/
+yarn add @premise/plugin-form-data-backend
 ```
 
 ## Configuration
