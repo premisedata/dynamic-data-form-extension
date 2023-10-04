@@ -19,7 +19,7 @@ jobs:
           cd ./packages
           folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
           echo $folders
-          echo "::set-output name=folders::$folders"
+          echo "folders=$folders" >> $GITHUB_OUTPUT
 
   
   build:
