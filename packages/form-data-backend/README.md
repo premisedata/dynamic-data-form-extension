@@ -23,6 +23,7 @@ export default async function createPlugin(
   return await createRouter(
     {
       logger: env.logger,
+      config: env.config,
     },
     [
       {
