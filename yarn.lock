@@ -16868,11 +16868,6 @@ zod-to-json-schema@~3.18.0:
   resolved "https://registry.yarnpkg.com/zod-to-json-schema/-/zod-to-json-schema-3.18.2.tgz#ce540062c6b57e5cc170aae57dad5eeb76d64f7b"
   integrity sha512-Vv1emSad6nJGRJUD/cdVxSgxtT3PnaUiHHZ+PxDU5vx+klM9eDekuIj6lO+tZTbATK+6ktJfY2C+WXn2mMX3Jw==
 
-zod@^3.18.0:
-  version "3.22.2"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.2.tgz#3add8c682b7077c05ac6f979fea6998b573e157b"
-  integrity sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==
-
 zod@~3.18.0:
   version "3.18.0"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.18.0.tgz#2eed58b3cafb8d9a67aa2fee69279702f584f3bc"

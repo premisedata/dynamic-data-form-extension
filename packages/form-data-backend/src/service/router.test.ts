@@ -1,4 +1,5 @@
 import { getVoidLogger } from '@backstage/backend-common';
+import { ConfigReader } from '@backstage/config';
 import express from 'express';
 import request from 'supertest';
 import { exampleRouter } from '../providers';
@@ -12,6 +13,11 @@ describe('createRouter', () => {
     const router = await createRouter(
       {
         logger: getVoidLogger(),
+        config: new ConfigReader({
+          app: {
+            baseUrl: 'http://example.com/extra-path',
+          },
+        }),
       },
       [
         {
