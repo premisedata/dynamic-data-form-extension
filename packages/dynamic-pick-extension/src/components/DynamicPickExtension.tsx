@@ -15,6 +15,10 @@ const DynamicPickExtensionWithOptionsFieldSchema = makeFieldSchemaFromZod(
     external_data: z
       .string()
       .describe('External endpoint to fill the select. Needs to return a JSON array of strings.'),
+    no_options_text: z
+      .string()
+      .default('No options')
+      .describe('Text to show when there are no options available'),
   }),
 );
 
@@ -64,6 +68,7 @@ export const DynamicPickExtension = ({
       options={formDataOptions}
       onChange={(_, value) => onChange(value)}
       getOptionSelected={(option, value) => option === value}
+      noOptionsText={options?.no_options_text}
       disableClearable
     />
   )

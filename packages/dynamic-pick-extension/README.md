@@ -56,3 +56,20 @@ parameters:
             # This is a provider added on the form-data-backend plugin
             form_data: github/teams
 ```
+
+### Options
+`no_options_text``: string
+    - Text to show when no options are available
+    - Default: "No options"
+
+```yaml
+parameters:
+    - team:
+        title: Github Team to add as admin of the repository
+        type: string
+        ui:field: DynamicPickExtension
+        ui:options:
+            # This is a provider added on the form-data-backend plugin
+            form_data: github/teams
+            no_options_text: "No teams available"
+```
