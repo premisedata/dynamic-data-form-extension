@@ -15,7 +15,7 @@ Create a `form-data.ts` file under `packages/backend/src/plugins` with the follo
 import { createRouter } from '@premise/plugin-form-data-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
-import { exampleRouter } from '../providers';
+import { exampleRouter } from '../providers/example';
 
 export default async function createPlugin(
   env: PluginEnvironment,
