@@ -35,9 +35,14 @@ export default async function createPlugin(
 }
 ```
 
-Create a `providers` folder under `packages/backend/src` containing all of your custom providers for example:
+Create a `providers` folder under `packages/backend/src` containing all of your custom providers:
+`packages/backend/src/providers/index.ts`
+```ts
+# Add here other custom providers
+export * from './example.ts';
+```
 
-`example.ts`
+`packages/backend/src/providers/example.ts`
 ```ts
 import express from 'express';
 import Router from 'express-promise-router';
