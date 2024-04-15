@@ -47,6 +47,7 @@ jobs:
           node-version: '18.x'
           registry-url: https://npm.pkg.github.com/
           always-auth: true
+          scope: '@premisedata'
       - 
         name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -59,6 +60,5 @@ jobs:
       - 
         name: Publish package to NPM
         run: yarn publish
-        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
