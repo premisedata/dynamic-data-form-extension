@@ -1,5 +1,5 @@
 {
-  "name": "@premise/plugin-dynamic-pick-extension",
+  "name": "@premisedata/plugin-dynamic-pick-extension",
   "version": "0.2.2",
   "main": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -7,7 +7,8 @@
   "publishConfig": {
     "access": "public",
     "main": "dist/index.esm.js",
-    "types": "dist/index.d.ts"
+    "types": "dist/index.d.ts",
+    "registry": "https://npm.pkg.github.com"
   },
   "backstage": {
     "role": "frontend-plugin"
