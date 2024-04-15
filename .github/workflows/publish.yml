@@ -1,11 +1,8 @@
-name: Publish package to GitHub Packages
-
+name: Publish package to NPM
 on:
   push:
     branches:
       - main
-      - migrate_github
-
 jobs:
   generate_matrix:
     name: Find services
@@ -21,14 +18,16 @@ jobs:
         run: |
           cd ./packages
           folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
-          echo "folders=$folders" >> $GITHUB_ENV
+          echo $folders
+          echo "folders=$folders" >> $GITHUB_OUTPUT
 
+  
   publish:
-    needs: generate_matrix
     runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
+    needs: [ generate_matrix ]
     strategy:
       matrix:
         folder: ${{ fromJson(needs.generate_matrix.outputs.folders) }}
@@ -36,28 +35,28 @@ jobs:
       run:
         working-directory: ./packages/${{ matrix.folder }}
     steps:
-      - name: Checkout repository
+      - 
+        name: Checkout repository
         uses: actions/checkout@v3
-
       # Setup .npmrc file to publish to GitHub Packages
-      - name: Setup .npmrc
+      - 
+        name: Setup .npmrc
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@premisedata'
-
-      - name: Install dependencies
+          registry-url: https://npm.pkg.github.com/
+      - 
+        name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Build TypeScript
+      - 
+        name: Build TypeScript
         run: yarn tsc
-
-      - name: Build packages
+      - 
+        name: Build packages
         run: yarn build
-
-      - name: Publish package
+      - 
+        name: Publish package to NPM
         run: yarn publish
         continue-on-error: true
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
